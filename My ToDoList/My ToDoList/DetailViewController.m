@@ -26,6 +26,7 @@
     
     self.dataPicker.minimumDate = [NSDate date];
     
+    [self.dataPicker addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];
     
     [self.buttonSave addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     
@@ -40,11 +41,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void) datePickerValueChanged {
+    
+    self.eventDate = self.dataPicker.date;
+    NSLog(@"self.eventdate %@", self.eventDate);
+}
+
+
 - (void) handlerEndEditin {
     
     [self.view endEditing:YES];
 
-    
     
 }
 

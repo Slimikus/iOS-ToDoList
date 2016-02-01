@@ -23,6 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.dataPicker.minimumDate = [NSDate date];
+    
+    
     [self.buttonSave addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     
     UITapGestureRecognizer * handTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlerEndEditin)];

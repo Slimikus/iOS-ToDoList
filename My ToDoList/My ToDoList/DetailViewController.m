@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dataPicker;
-
 @property (weak, nonatomic) IBOutlet UIButton *buttonSave;
 
 
@@ -23,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.buttonSave.userInteractionEnabled = NO;
     self.dataPicker.minimumDate = [NSDate date];
     
     [self.dataPicker addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];

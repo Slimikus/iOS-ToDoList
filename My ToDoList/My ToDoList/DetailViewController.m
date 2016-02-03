@@ -49,13 +49,41 @@
 
 
 - (void) handlerEndEditin {
+ 
+         if ([self.textField.text length] != 0) {
+            [self.view endEditing:YES];
+            self.buttonSave.userInteractionEnabled = YES;
+        }
+        
+        else {
+            [self showAlertWithMessage:@"Для сохранения события введите значение в текстовое поле"];
+        }
+        
+    }
+
+
+- (void) save {
     
-    [self.view endEditing:YES];
+    if (self.eventDate) {
+        
+        if ([self.eventDate compare:[NSDate date]] == NSOrderedSame) {
+            [self showAlertWithMessage:@"Для будущего события не может быть совпадать с текущей датой"];
+            
+        } else if ([self.eventDate compare:[NSDate date]] == NSOrderedAscending) {
+            [self showAlertWithMessage:@"Для будущего события не может быть ранее текущей даты"];
+            
+        } else {
+            [self setNotification];
+        }
+        
+    } else {
+        [self showAlertWithMessage:@"Для сохранения события измените значение даты на более позднее"];
+    }
 
     
 }
 
-- (void) save {
+- (void) setNotification {
     
     NSString * eventInfo = self.textField.text;
     NSDateFormatter * formater = [[NSDateFormatter alloc] init];
@@ -74,21 +102,35 @@
     notification.soundName = UILocalNotificationDefaultSoundName;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    
-    
-    NSLog(@"save");
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if ([textField isEqual:self.textField]) {
-    [self.textField resignFirstResponder];
+        if ([self.textField.text length] != 0) {
+            [self.textField resignFirstResponder];
+            self.buttonSave.userInteractionEnabled = YES;
+            return YES;
+        }
+        
+        else {
+            [self showAlertWithMessage:@"Для сохранения события введите значение в текстовое поле"];
+        }
+        
     }
-    
-    
-    return YES;
+    return NO;
 }
+
+
+- (void) showAlertWithMessage : (NSString *) message {
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Внимание!" message: message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+
+
+
 
 
 @end

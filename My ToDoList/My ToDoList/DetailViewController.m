@@ -22,6 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.isDetail) {
+        
+        self.textField.text = self.eventInfo;
+        self.dataPicker.date = self.eventDate;
+        
+    } else {
+    
     self.buttonSave.userInteractionEnabled = NO;
     self.dataPicker.minimumDate = [NSDate date];
     
@@ -32,6 +39,8 @@
     UITapGestureRecognizer * handTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlerEndEditin)];
     
     [self.view addGestureRecognizer:handTap];
+        
+    }
     
 }
 

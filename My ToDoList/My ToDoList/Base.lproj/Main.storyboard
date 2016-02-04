@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Список задач-->
         <scene sceneID="rhv-zm-geh">
             <objects>
                 <tableViewController id="6Gv-sP-zh1" customClass="MainTableViewController" sceneMemberID="viewController">
@@ -45,7 +45,8 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="LJP-ib-9ER">
+                    <navigationItem key="navigationItem" title="Список задач" id="LJP-ib-9ER">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="p6r-wA-Gqu"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="z9f-V3-cjd">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="push" id="9rN-6g-pXS"/>
@@ -74,7 +75,7 @@
             </objects>
             <point key="canvasLocation" x="-469" y="363"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Задача-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="detailView" id="BYZ-38-t0r" customClass="DetailViewController" sceneMemberID="viewController">
@@ -106,7 +107,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EMt-uL-OUM"/>
+                    <navigationItem key="navigationItem" title="Задача" id="EMt-uL-OUM"/>
                     <connections>
                         <outlet property="buttonSave" destination="oYm-W7-uCT" id="JqN-5R-MHH"/>
                         <outlet property="dataPicker" destination="dfx-Yh-yjv" id="Mwg-I6-FcV"/>

@@ -65,15 +65,12 @@
     NSLog(@"self.eventdate %@", self.eventDate);
 }
 
-
 - (void) handlerEndEditin {
  
          if ([self.textField.text length] != 0) {
             [self.view endEditing:YES];
             self.buttonSave.userInteractionEnabled = YES;
-        }
-        
-        else {
+        } else {
             [self showAlertWithMessage:@"Для сохранения события введите значение в текстовое поле"];
         }
         
@@ -97,7 +94,6 @@
     } else {
         [self showAlertWithMessage:@"Для сохранения события измените значение даты на более позднее"];
     }
-
     
 }
 
@@ -121,6 +117,8 @@
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewEvent" object:nil];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -131,9 +129,7 @@
             [self.textField resignFirstResponder];
             self.buttonSave.userInteractionEnabled = YES;
             return YES;
-        }
-        
-        else {
+        } else {
             [self showAlertWithMessage:@"Для сохранения события введите значение в текстовое поле"];
         }
         
@@ -141,16 +137,10 @@
     return NO;
 }
 
-
 - (void) showAlertWithMessage : (NSString *) message {
     
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Внимание!" message: message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 }
-
-
-
-
-
 
 @end
